@@ -3,6 +3,8 @@ import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 import ast
 import nltk
+nltk.download('punkt')  # Download punkt tokenizer for word tokenization
+
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import SnowballStemmer
