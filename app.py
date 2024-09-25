@@ -3,7 +3,20 @@ import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 import ast
 import nltk
-nltk.download('punkt')  # Download punkt tokenizer for word tokenization
+import ssl
+
+# Disable SSL verification (only if necessary)
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
+
+# Download NLTK data
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
@@ -237,6 +250,7 @@ def save_precomputed_data(data, data_file):
 
 def main():
     st.title("TV Shows Recommender")
+    print("Starting main function...")  
 
     # Load precomputed data 
     dataset_file = 'TMDB_tv_dataset_v3.csv'
