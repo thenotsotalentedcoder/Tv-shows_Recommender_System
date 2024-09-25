@@ -1,0 +1,9 @@
+pandas
+numpy
+scikit-learn
+nltk
+fuzzywuzzy
+sentence-transformers
+streamlit
+pillow
+requests
