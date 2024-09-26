@@ -282,7 +282,7 @@ def main():
                 st.subheader(f"Recommendations for '{selected_show}':")
 
                 # Create columns for better layout
-                cols = st.columns(5)
+                cols = st.columns(3)
 
                 # Iterate through recommendations and display in columns
                 for i, (index, row) in enumerate(recommendations.iterrows()):
