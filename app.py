@@ -13,21 +13,27 @@ import pickle
 import streamlit as st
 from PIL import Image
 import requests
+import os
 
+# Set custom path for NLTK data
+nltk_data_path = os.path.join(os.getcwd(), 'nltk_data')
+nltk.data.path.append(nltk_data_path)
 
 # Download NLTK data (only if not already downloaded)
 try:
     nltk.data.find('tokenizers/punkt')
 except LookupError:
-    nltk.download('punkt', quiet=True)
+    nltk.download('punkt', download_dir=nltk_data_path, quiet=True)
+
 try:
     nltk.data.find('corpora/stopwords')
 except LookupError:
-    nltk.download('stopwords', quiet=True)
+    nltk.download('stopwords', download_dir=nltk_data_path, quiet=True)
+
 try:
     nltk.data.find('corpora/wordnet')
 except LookupError:
-    nltk.download('wordnet', quiet=True)
+    nltk.download('wordnet', download_dir=nltk_data_path, quiet=True)
 
 # Initialize stemmer and stop words
 stemmer = SnowballStemmer('english')
