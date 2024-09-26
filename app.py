@@ -19,21 +19,17 @@ import os
 nltk_data_path = os.path.join(os.getcwd(), 'nltk_data')
 nltk.data.path.append(nltk_data_path)
 
-# Download NLTK data (only if not already downloaded)
-try:
-    nltk.data.find('tokenizers/punkt')
-except LookupError:
-    nltk.download('punkt', download_dir=nltk_data_path, quiet=True)
+# Function to download NLTK data
+def download_nltk_resources():
+    resources = ['punkt', 'punkt_tab', 'stopwords', 'wordnet']
+    for resource in resources:
+        try:
+            nltk.data.find(f'tokenizers/{resource}')
+        except LookupError:
+            nltk.download(resource, download_dir=nltk_data_path, quiet=True)
 
-try:
-    nltk.data.find('corpora/stopwords')
-except LookupError:
-    nltk.download('stopwords', download_dir=nltk_data_path, quiet=True)
-
-try:
-    nltk.data.find('corpora/wordnet')
-except LookupError:
-    nltk.download('wordnet', download_dir=nltk_data_path, quiet=True)
+# Call the function to ensure all necessary NLTK resources are downloaded
+download_nltk_resources()
 
 # Initialize stemmer and stop words
 stemmer = SnowballStemmer('english')
